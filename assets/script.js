@@ -20,9 +20,14 @@ const slides = [
 
 const arrow_left = document.querySelector(".arrow_left");
 const arrow_right = document.querySelector(".arrow_right");
+const dots = document.querySelector(".dots");
 
-console.log(arrow_left);
-console.log(arrow_right);
+slides.map((slide) => {
+  const dot = document.createElement("div");
+  dot.classList.add("dot");
+  dots.appendChild(dot);
+  slides.indexOf(slide) === 0 ? dot.classList.add("dot_selected") : "";
+});
 
 arrow_left.addEventListener("click", () => {
   console.log("click arrow left");
