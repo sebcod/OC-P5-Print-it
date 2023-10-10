@@ -1,3 +1,6 @@
+// Script du carrousel
+
+// Tableau des différents slides du carrousel
 const slides = [
   {
     image: "slide1.jpg",
@@ -18,41 +21,61 @@ const slides = [
   },
 ];
 
+// Récupération des éléments sur le DOM avec document.querySelector
 const banner_img = document.querySelector(".banner-img");
 const banner_tagLine = document.querySelector("#banner p");
 const arrow_left = document.querySelector(".arrow_left");
 const arrow_right = document.querySelector(".arrow_right");
 const dots_container = document.querySelector(".dots");
 
-function update_slider() {
-  dots[slide_index].classList.add("dot_selected");
-  banner_img.src = `./assets/images/slideshow/${slides[slide_index].image}`;
-  banner_tagLine.innerHTML = slides[slide_index].tagLine;
-}
-
-// create dots
+// Création d'un dot pour chaque slide
+// Ajout de la class .dot
+// Ajout du dot dans dots_container
 slides.forEach(() => {
   const dot = document.createElement("div");
   dot.classList.add("dot");
   dots_container.appendChild(dot);
 });
 
+// Récupération des dots créés dans le tableau dots[]
 const dots = document.querySelectorAll(".dot");
 
-let slide_index = 0;
+// Initialisation du compteur de slides à 0
+let slide_counter = 0;
 
+// Appel de la fonction update_slider pour afficher le slider 0
 update_slider();
 
-// click left
+// Déclaration de la fontion update_slider()
+// Ajout de la class .dot_selected à dots[slide_counter]
+// Mis à jour du src de l'image du slider
+// Mis à jour de la tagLine du slider
+function update_slider() {
+  dots[slide_counter].classList.add("dot_selected");
+  banner_img.src = `./assets/images/slideshow/${slides[slide_counter].image}`;
+  banner_tagLine.innerHTML = slides[slide_counter].tagLine;
+}
+
+// Au clique sur arrow_left:
+// On enlève la class .dot_selected à la dot actuelle, dots[slide_counter]
+// On vérifie si slide_counter - 1 est inférieur 0
+//    si oui, on est arrivé au début du tableau alors slider_counter prend la dernière valeur du tableau, slides.length - 1
+//    si non, on décrémente slide_counter. il vaut alors slide_counter - 1
+// On appel la fontion update_slider() avec la nouvelle valeur de slide_counter
 arrow_left.addEventListener("click", () => {
-  dots[slide_index].classList.remove("dot_selected");
-  slide_index - 1 < 0 ? (slide_index = slides.length - 1) : slide_index--;
+  dots[slide_counter].classList.remove("dot_selected");
+  slide_counter - 1 < 0 ? (slide_counter = slides.length - 1) : slide_counter--;
   update_slider();
 });
 
-//click right
+// Au clique sur arrow_Right:
+// On enlève la class .dot_selected à la dote actuelle, dots[slide_counter]
+// On vérifie si slide_counter + 1 est supérieur au dernier élément du tableau, slides.length - 1
+//    si oui, on est arrivé à la fin du tableau alors slider_counter prend la première valeur du tableau, 0
+//    si non, on incrémente slide_counter. il vaut alors slide_counter + 1
+// On appel la fontion update_slider() avec la nouvelle valeur de slide_counter
 arrow_right.addEventListener("click", () => {
-  dots[slide_index].classList.remove("dot_selected");
-  slide_index + 1 > slides.length - 1 ? (slide_index = 0) : slide_index++;
+  dots[slide_counter].classList.remove("dot_selected");
+  slide_counter + 1 > slides.length - 1 ? (slide_counter = 0) : slide_counter++;
   update_slider();
 });
