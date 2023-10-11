@@ -46,10 +46,10 @@ let slide_counter = 0;
 // Appel de la fonction update_slider pour afficher le slider 0
 update_slider();
 
-// Déclaration de la fontion update_slider()
+// Déclaration de la fonction update_slider()
 // Ajout de la class .dot_selected à dots[slide_counter]
-// Mis à jour du src de l'image du slider
-// Mis à jour de la tagLine du slider
+// Mise à jour du src de l'image du slider
+// Mise à jour de la tagLine du slider
 function update_slider() {
   dots[slide_counter].classList.add("dot_selected");
   banner_img.src = `./assets/images/slideshow/${slides[slide_counter].image}`;
@@ -57,11 +57,11 @@ function update_slider() {
 }
 
 // Au clique sur arrow_left:
-// On enlève la class .dot_selected à la dot actuelle, dots[slide_counter]
+// On enlève la class .dot_selected au dot du slide actuel, dots[slide_counter]
 // On vérifie si slide_counter - 1 est inférieur 0
 //    si oui, on est arrivé au début du tableau alors slider_counter prend la dernière valeur du tableau, slides.length - 1
 //    si non, on décrémente slide_counter. il vaut alors slide_counter - 1
-// On appel la fontion update_slider() avec la nouvelle valeur de slide_counter
+// On appel la fonction update_slider() avec la nouvelle valeur de slide_counter
 arrow_left.addEventListener("click", () => {
   dots[slide_counter].classList.remove("dot_selected");
   slide_counter - 1 < 0 ? (slide_counter = slides.length - 1) : slide_counter--;
@@ -69,11 +69,11 @@ arrow_left.addEventListener("click", () => {
 });
 
 // Au clique sur arrow_Right:
-// On enlève la class .dot_selected à la dote actuelle, dots[slide_counter]
+// On enlève la class .dot_selected au dot du slide actuel, dots[slide_counter]
 // On vérifie si slide_counter + 1 est supérieur au dernier élément du tableau, slides.length - 1
 //    si oui, on est arrivé à la fin du tableau alors slider_counter prend la première valeur du tableau, 0
 //    si non, on incrémente slide_counter. il vaut alors slide_counter + 1
-// On appel la fontion update_slider() avec la nouvelle valeur de slide_counter
+// On appel la fonction update_slider() avec la nouvelle valeur de slide_counter
 arrow_right.addEventListener("click", () => {
   dots[slide_counter].classList.remove("dot_selected");
   slide_counter + 1 > slides.length - 1 ? (slide_counter = 0) : slide_counter++;
